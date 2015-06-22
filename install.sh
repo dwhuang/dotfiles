@@ -1,7 +1,8 @@
 #!/bin/sh
 
 baseDir="$(cd "$(dirname $0)" ; pwd -P)"
-dotFiles="bash_profile bin gitignore_global gvimrc tmux.conf vim vimrc ssh"
+dotFiles="bash_profile bin gitignore_global gvimrc tmux.conf vim vimrc \
+    ssh/config"
 colorErr="\033[31m"
 colorNone="\033[m"
 
