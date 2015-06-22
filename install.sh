@@ -26,7 +26,7 @@ if [ ${fileExists} ]; then
 else
     # Create symbolic links
     for fn in ${dotFiles}; do
-        ln -sfh ${baseDir}/${fn} ~/.${fn}
+        ln -sfn ${baseDir}/${fn} ~/.${fn}
     done
 fi
 
