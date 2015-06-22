@@ -1,0 +1,4 @@
+vim/view/*
+vim/bundle/*
+ssh/*
+!ssh/config

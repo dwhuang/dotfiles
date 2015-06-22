@@ -1,0 +1,39 @@
+snippet for
+for (int ${1:i} = 0; $1 < ${2:count}; ++$1) {
+	${3}
+}
+endsnippet
+
+snippet ifs
+std::ifstream ifs(${1:fname}.c_str(), std::ios::${2:in});
+if (!ifs.good()) {
+	ifs.close();
+	${3:std::cerr} << "Cannot open " << $1 << " for reading\n";
+	$3.flush();
+	${4:return;}
+}
+${5}
+ifs.close();
+endsnippet
+
+snippet ofs
+std::ofstream ofs(${1:fname}.c_str(), std::ios::${2:out});
+if (!ofs.good()) {
+	ofs.close();
+	${3:std::cerr} << "Cannot open " << $1 << " for writing\n";
+	$3.flush();
+	${4:return;}
+}
+${5}
+ofs.close();
+endsnippet
+
+snippet tokenize
+std::stringstream inputstream(${1:str});
+std::vector<std::string> result;
+std::string token;
+while (std::getline(inputstream, token, ${2:' '})) {
+	result.push_back(token);
+	${3}
+}
+endsnippet

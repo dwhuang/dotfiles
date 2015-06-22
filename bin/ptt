@@ -1,0 +1,47 @@
+#!/usr/bin/expect --
+
+# xterm-256color doesn't work
+set env(TERM) xterm-color   
+# $userfn should contain 2 lines: the first line should be the login id
+# and the second line the password (clear text)
+set userfn "~/.ptt"
+
+# Determin host to connect
+if {[llength $argv] == 0} {
+    set host "ptt.cc"
+} elseif {[llength $argv] == 1 && [lindex $argv 0] == "2"} {
+    set host "ptt2.cc"
+} else {
+    send_user "Usage: no argument for ptt; argument \"2\" for ptt2\n";
+    return
+}
+
+# Read username and password from $userfn
+if {[catch {set fp [open $userfn r]}]} {
+    send_user "$userfn does not exist\n"
+    return
+} else {
+    set userdata [split [read -nonewline $fp] "\n"]
+    close $fp
+    if {[llength $userdata] < 2} {
+        send_user "$userfn should contain 2 lines: username and password\n"
+        return
+    }
+    set username [lindex $userdata 0]
+    set password [lindex $userdata 1]
+}
+
+# Repeat login until success
+set success 0
+for {} {!$success} {} {
+    spawn telnet -8 $host
+    #spawn ssh -l bbs bbs.ptt.cc
+    expect {
+        "系統過載" { close $spawn_id ; sleep 1 ; continue }
+        "代號" { send "$username\r" ; exp_continue }
+        "密碼" { send "$password\r" ; set success 1 }
+    }
+}
+expect "請按任意鍵繼續" { send "\rqf\r" }
+interact
+

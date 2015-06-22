@@ -1,0 +1,26 @@
+ServerAliveInterval 120
+
+Host bax
+    Hostname 128.8.20.61
+    User dwhuang
+Host baxm
+    Hostname 128.8.20.61
+    User matlab
+Host junkfood
+    Hostname junkfood.cs.umd.edu
+    User dwh
+Host kappa
+    Hostname kappa.twbbs.org
+    User dwhuang
+Host desk
+    Hostname dwh-desktop.cs.umd.edu
+    User dwhuang
+Host synapse
+    Hostname synapse.cs.umd.edu
+    User dwh
+Host grace
+    Hostname linux.grace.umd.edu
+    User dwh
+Host glue
+    Hostname glue.umd.edu
+    User dwh
