@@ -48,12 +48,10 @@ echo
 read -p "Do you want to build YouCompleteMe for vim? [Y/n] " yn
 case $yn in 
     [Nn]* ) 
-        break
         ;;
     * )
         cd ~/.vim/bundle/YouCompleteMe
         ./install.sh --clang-completer
-        break
         ;;
 esac
 
@@ -62,11 +60,9 @@ echo
 read -p "Do you want to build Command-T (ruby required) for vim? [Y/n] " yn
 case $yn in 
     [Nn]* )
-        break
         ;;
     * )
         cd ~/.vim/bundle/Command-T/ruby/command-t
         ruby extconf.rb && make
-        break
         ;;
 esac
