@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 baseDir="$(cd "$(dirname $0)" ; pwd -P)"
 dotFiles="bash_profile bin gitignore_global gvimrc tmux.conf vim vimrc \
