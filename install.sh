@@ -3,25 +3,23 @@
 baseDir="$(cd "$(dirname $0)" ; pwd -P)"
 dotFiles="bash_profile bin gitignore_global gvimrc tmux.conf vim vimrc \
     ssh/config"
-colorErr="\033[31m"
-colorNone="\033[m"
 
 unset fileExists
 for fn in ${dotFiles}; do
     # A target file already exists
-    if [ -f ~/.${fn} -a ! -L ~/.${fn} ]; then
-        echo "File ~/.${fn} exists"
+    if [ -e ~/.${fn} -a ! -L ~/.${fn} ]; then
+        echo -e "File ~/.${fn} exists"
         fileExists=1
     fi
     # A target symbolic link already exists and points to elsewhere
     if [ -L ~/.${fn} -a "`readlink ~/.${fn}`" != "${baseDir}/${fn}" ]; then
-        echo "Symbolic link ~/.${fn} points to a different location"
+        echo -e "Symbolic link ~/.${fn} points to a different location"
         fileExists=1
     fi
 done
 
 if [ ${fileExists} ]; then
-    echo ${colorErr}Please remove files above and try again${colorNone}
+    echo -e "\033[31mPlease remove files above and try again\033[m"
     exit
 else
     # Create symbolic links
