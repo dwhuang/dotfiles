@@ -127,6 +127,8 @@ colorscheme jellybeans
 set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,mac,dos
+" Highlight color for matching parens
+highlight MatchParen ctermfg=lightblue ctermbg=none
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -150,11 +152,11 @@ set tabstop=4
 set lbr
 set tw=500
 " Auto indent
-set ai 
+set ai
 " Smart indent
-set si 
+set si
 " Wrap lines
-set wrap 
+set wrap
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => search
@@ -187,11 +189,13 @@ let g:NERDRemoveExtraSpaces = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => moving around windows
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-nmap <M-tab> <c-w><c-w>
+" when option key is not used as meta key
 noremap ∆       <C-W>j
 noremap ˚      <C-W>k
 noremap ˙      <C-W>h
 noremap ¬       <C-W>l
+" useful for local MacVim
+nmap <M-tab> <c-w><c-w>
 noremap <M-j>   <C-W>j
 noremap <M-k>   <C-W>k
 noremap <M-h>   <C-W>h
@@ -237,7 +241,7 @@ nmap <silent> <leader>h <Plug>DashSearch
 "let g:easytags_events = []
 "au BufWritePost *.cpp,*.h,*.c UpdateTags
 
-au! BufWritePost *.cpp,*.hpp,*.h,*.c silent !ctags -R 
+au! BufWritePost *.cpp,*.hpp,*.h,*.c silent !ctags -R
         \ --c++-kinds=+p --fields=+iaSl --extra=+q
 au! BufWritePost *.py silent !ctags -R --fields=+iaSl --extra=+q
 
