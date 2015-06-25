@@ -28,6 +28,7 @@ pathCheckList=(
     /opt/local/bin
     /opt/local/sbin
     /opt/local/lib/postgresql93/bin
+    ~/Library/Python/2.7/bin
 )
 # Add path if exists
 path=

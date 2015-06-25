@@ -52,6 +52,7 @@ Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'bling/vim-airline'
 Plugin 'nanotech/jellybeans.vim'
+Plugin 'vimwiki/vimwiki'
 call vundle#end()
 filetype plugin indent on
 
@@ -190,17 +191,16 @@ let g:NERDRemoveExtraSpaces = 0
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => moving around windows
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" when option key is not used as meta key
-noremap ∆       <C-W>j
-noremap ˚      <C-W>k
-noremap ˙      <C-W>h
-noremap ¬       <C-W>l
-" useful for local MacVim
 nmap <M-tab> <c-w><c-w>
 noremap <M-j>   <C-W>j
 noremap <M-k>   <C-W>k
 noremap <M-h>   <C-W>h
 noremap <M-l>   <C-W>l
+" When working in remote shells
+noremap ∆       <C-W>j
+noremap ˚      <C-W>k
+noremap ˙      <C-W>h
+noremap ¬       <C-W>l
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => source .vimrc
@@ -220,8 +220,8 @@ map <leader>m :make -j<cr>
 " location-list & quickfix
 nmap <silent> <c-j> :lnext<cr>
 nmap <silent> <c-k> :lprevious<cr>
-nmap <silent> <m-j> :cnext<cr>
-nmap <silent> <m-k> :cprevious<cr>
+nmap <silent> <c-s-j> :cnext<cr>
+nmap <silent> <c-s-k> :cprevious<cr>
 
 " quick swtiching to .cpp/.h counterpart
 au! BufEnter *.cpp let b:fswitchdst = 'hpp,h' | let b:fswitchlocs = './'
