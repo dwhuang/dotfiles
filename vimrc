@@ -45,7 +45,8 @@ Plugin 'Valloric/ListToggle'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'Raimondi/delimitMate'
-Plugin 'airblade/vim-gitgutter'
+"Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
@@ -313,6 +314,7 @@ let g:airline_powerline_fonts = 0
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled = 1
 
 " remove trailing spaces
 map <leader>. :%s/\s\+$//g<cr>
