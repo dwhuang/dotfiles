@@ -40,12 +40,13 @@ Plugin 'restore_view.vim'
 Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
 Plugin 'FSwitch'
+"Plugin 'xolox/vim-misc'             "required by vim-easytags
+"Plugin 'xolox/vim-easytags'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/ListToggle'
 Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'Raimondi/delimitMate'
-"Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-fugitive'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'SirVer/ultisnips'
@@ -241,10 +242,10 @@ nmap <silent> <leader>h <Plug>DashSearch
 "let g:easytags_auto_highlight = 0
 "let g:easytags_events = []
 "au BufWritePost *.cpp,*.h,*.c UpdateTags
-
-au! BufWritePost *.cpp,*.hpp,*.h,*.c silent !ctags -R
-        \ --c++-kinds=+p --fields=+iaSl --extra=+q
-au! BufWritePost *.py silent !ctags -R --fields=+iaSl --extra=+q
+au! BufWritePost *.cpp,*.hpp,*.h,*.c
+        \ silent !(cd %:p:h;ctags -R --fields=+iaSl --extra=+q --c++-kinds=+p)
+au! BufWritePost *.py
+        \ silent !(cd %:p:h;ctags -R --fields=+iaSl --extra=+q)
 
 " cscope
 "au BufWritePost *.cpp,*.h,*.c silent !cscope -bqk -i cscope.files
@@ -319,3 +320,16 @@ let g:airline#extensions#branch#enabled = 1
 " remove trailing spaces
 map <leader>. :%s/\s\+$//g<cr>
 
+" follow symbolic link and re-init fugitive
+function! FollowSymlink()
+    let fname = expand('%')
+    if getftype(fname) != 'link'
+        return
+    endif
+    let resolved = fnameescape(resolve(fname))
+    execute 'file ' . resolved
+    echomsg 'Followed symbolic link to: ' . resolved
+    call fugitive#detect(resolved)
+    " there will be a 'File exists' warning when saving
+endfunction
+nnoremap <leader>fs :call FollowSymlink()<cr>
