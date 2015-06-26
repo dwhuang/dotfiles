@@ -40,8 +40,6 @@ Plugin 'restore_view.vim'
 Plugin 'The-NERD-Commenter'
 Plugin 'The-NERD-tree'
 Plugin 'FSwitch'
-"Plugin 'xolox/vim-misc'             "required by vim-easytags
-"Plugin 'xolox/vim-easytags'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'Valloric/ListToggle'
 Plugin 'rizzatti/funcoo.vim'
@@ -180,7 +178,7 @@ nmap <leader>bd :BD<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nmap <leader>nt :NERDTree<cr>
 " open nerdtree if no file is opened
-au VimEnter * if !argc() | NERDTree | endif
+"au VimEnter * if !argc() | NERDTree | endif
 " exit vim if the nerdtree window is the only window
 au BufEnter * if (winnr("$") == 1 && exists("b:NERDTreeType")
     \ && b:NERDTreeType == "primary") | q | endif
@@ -333,3 +331,24 @@ function! FollowSymlink()
     " there will be a 'File exists' warning when saving
 endfunction
 nnoremap <leader>fs :call FollowSymlink()<cr>
+
+" get dropbox path
+function! GetDropboxPath()
+python << endpython
+import json
+import sys
+import vim
+from os.path import expanduser
+try:
+    f = open(expanduser('~/.dropbox/info.json'), 'r')
+    info = json.load(f)
+    vim.command("return '%s'" % info['personal']['path'])
+except Exception as e:
+    vim.command("return ''")
+endpython
+endfunction
+" Set vimwiki path
+let dropboxPath = GetDropboxPath()
+if !empty(dropboxPath) 
+    let g:vimwiki_list = [{'path': dropboxPath . '/vimwiki', 'auto_export': 1}]
+endif
