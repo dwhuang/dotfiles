@@ -241,9 +241,10 @@ nmap <silent> <leader>h <Plug>DashSearch
 "let g:easytags_events = []
 "au BufWritePost *.cpp,*.h,*.c UpdateTags
 au! BufWritePost *.cpp,*.hpp,*.h,*.c
-        \ silent !(cd %:p:h;ctags -R --fields=+iaSl --extra=+q --c++-kinds=+p)
+        \ silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q --c++-kinds=+p)
 au! BufWritePost *.py
-        \ silent !(cd %:p:h;ctags -R --fields=+iaSl --extra=+q)
+        \ silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q)
+nnoremap <leader>ct silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q)
 
 " cscope
 "au BufWritePost *.cpp,*.h,*.c silent !cscope -bqk -i cscope.files
@@ -349,6 +350,6 @@ endpython
 endfunction
 " Set vimwiki path
 let dropboxPath = GetDropboxPath()
-if !empty(dropboxPath) 
+if !empty(dropboxPath)
     let g:vimwiki_list = [{'path': dropboxPath . '/vimwiki', 'auto_export': 1}]
 endif
