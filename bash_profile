@@ -67,3 +67,7 @@ export PS1="\[\033[37m\]\$(date +%H%M) \[\033[32m\]\u\[\033[31m\]@\h\[\033[32m\]
 if [ -f /opt/local/etc/bash_completion ]; then
     . /opt/local/etc/bash_completion
 fi
+
+if [ -d /Applications/MacPorts/MacVim.app ]; then
+    export VIM_APP_DIR=/Applications/MacPorts
+fi
