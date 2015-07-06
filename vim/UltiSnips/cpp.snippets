@@ -37,3 +37,22 @@ while (std::getline(inputstream, token, ${2:' '})) {
 	${3}
 }
 endsnippet
+
+snippet dlopen
+void *dlHandle = dlopen(${1:libfname}, RTLD_${2:NOW});
+if (!dlHandle) {
+	${3:std::cerr} << *dlerror() << "\n";
+	${4:return;}
+}
+char *dlError;
+typedef ${5:int} (*${6:func}_t)(${7});
+#ifdef __GNUC__
+// Disable gnu c extension warning for the following statement
+__extension__
+#endif
+$6_t $6 = ($6_t)dlsym(dlHandle, "$6");
+if ((dlError = dlerror()) != NULL) {
+	${8:std::cerr} << "when loading $6(): " << *dlError << "\n";
+	${9:return;}
+}
+endsnippet
