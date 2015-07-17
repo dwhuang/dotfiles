@@ -33,7 +33,7 @@ if {[catch {set fp [open $userfn r]}]} {
 
 # Repeat login until success
 set success 0
-for {set i 0} {!$success && $i < 100} {incr i 1} {
+for {set i 0} {!$success && $i < 20} {incr i 1} {
     spawn telnet -8 $host
     #spawn ssh -l bbs bbs.ptt.cc
     expect {
@@ -46,5 +46,5 @@ if {$success} {
     expect "請按任意鍵繼續" { send "\rqf\r" }
     interact
 } else {
-    puts "Cannot connect after 100 trials, quit\n"
+    puts "Cannot connect after 20 trials, quit\n"
 }
