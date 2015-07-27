@@ -1,0 +1,22 @@
+snippet preamble "Preamble" b
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+endsnippet
+
+snippet pyplot "Pyplot" b
+# http://matplotlib.org/api/pyplot_summary.html
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+rcParams['ps.useafm'] = True
+rcParams['pdf.use14corefonts'] = True
+rcParams['text.usetex'] = True
+
+fig = plt.figure(figsize=(10, 6))
+ax = plt.subplot(1, 1, 1)
+${1:}
+
+#plt.tight_layout()
+#fig.savefig()
+plt.show()
+endsnippet
