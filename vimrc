@@ -52,6 +52,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'bling/vim-airline'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'vimwiki/vimwiki'
+"Plugin 'othree/html5.vim'
+Plugin 'pangloss/vim-javascript'
 call vundle#end()
 filetype plugin indent on
 
@@ -351,5 +353,9 @@ endfunction
 " Set vimwiki path
 let dropboxPath = GetDropboxPath()
 if !empty(dropboxPath)
-    let g:vimwiki_list = [{'path': dropboxPath . '/vimwiki', 'auto_export': 1}]
+    let g:vimwiki_list = [{'path': dropboxPath . '/vimwiki',
+                \'auto_export': 1,
+                \'template_path': dropboxPath . '/vimwiki_templates',
+                \'template_default': 'default',
+                \'template_ext': '.html'}]
 endif
