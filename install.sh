@@ -42,19 +42,20 @@ fi
 vim +PluginInstall +qall
 
 # Build ycm
-echo
+echo "To build YouCompleteMe you need cmake and clang"
 read -p "Do you want to build YouCompleteMe for vim? [Y/n] " yn
 case $yn in 
     [Nn]* ) 
         ;;
     * )
         cd ~/.vim/bundle/YouCompleteMe
-        ./install.sh --clang-completer
+        ./install.py --clang-completer
         ;;
 esac
 
 # Build command-t: ruby18 required
 echo
+echo "To build Command-T you need ruby"
 read -p "Do you want to build Command-T (ruby required) for vim? [Y/n] " yn
 case $yn in 
     [Nn]* )
