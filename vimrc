@@ -54,6 +54,8 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'vimwiki/vimwiki'
 "Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
+Plugin 'chrisbra/csv.vim'
+Plugin 'suan/vim-instant-markdown'
 call vundle#end()
 filetype plugin indent on
 
@@ -267,6 +269,8 @@ set viewoptions=cursor,folds,slash,unix
 " YouCompleteMe
 au BufEnter * if (&ft=='c' || &ft=='cpp') | nmap<c-]> :YcmCompleter GoTo<CR>|
         \else | nmap<c-]> :exec("tag ".expand("<cword>"))<CR>| endif
+nmap <leader>jd :YcmCompleter GoToDefinition<CR>
+nmap <leader>jc :YcmCompleter GoToDeclaration<CR>
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_global_ycm_extra_conf = '~/.vim/ycm_extra_conf.py'
 let g:ycm_confirm_extra_conf = 0
@@ -298,7 +302,7 @@ let g:CommandTTraverseSCM = "pwd"
 vnoremap // y/<C-R>"<CR>
 
 " run current script
-nnoremap <leader><leader> :!./%<cr>
+nnoremap <leader><leader> :!"./%"<cr>
 
 " mini buffer explorer
 let g:miniBufExplBRSplit = 0

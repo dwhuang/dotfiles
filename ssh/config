@@ -10,7 +10,7 @@ Host junkfood
     Hostname junkfood.cs.umd.edu
     User dwh
 Host kappa
-    Hostname kappa.twbbs.org
+    Hostname 140.113.212.93
     User dwhuang
 Host desk
     Hostname dwh-desktop.cs.umd.edu
@@ -24,3 +24,6 @@ Host grace
 Host glue
     Hostname glue.umd.edu
     User dwh
+Host aries
+    Hostname aries.student.umd.edu
+    User dwhuang
