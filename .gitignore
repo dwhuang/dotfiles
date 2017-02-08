@@ -3,3 +3,7 @@ vim/bundle/*
 ssh/*
 !ssh/config
 *.pyc
+bin/dbinit
+bin/dbstart
+bin/dbstop
+bin/k
