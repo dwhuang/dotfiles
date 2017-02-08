@@ -46,16 +46,19 @@ Plugin 'rizzatti/funcoo.vim'
 Plugin 'rizzatti/dash.vim'
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'fholgado/minibufexpl.vim'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
-Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'vimwiki/vimwiki'
-"Plugin 'othree/html5.vim'
+Plugin 'othree/html5.vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'chrisbra/csv.vim'
 Plugin 'suan/vim-instant-markdown'
+Plugin 'jaxbot/browserlink.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -159,7 +162,11 @@ set tw=500
 " Auto indent
 set ai
 " Smart indent
-set si
+"set si
+" c-style indent without removing indent for # characters
+set cindent
+set cinkeys-=0#
+set indentkeys-=0#
 " Wrap lines
 set wrap
 
@@ -245,10 +252,11 @@ nmap <silent> <leader>h <Plug>DashSearch
 "let g:easytags_events = []
 "au BufWritePost *.cpp,*.h,*.c UpdateTags
 au! BufWritePost *.cpp,*.hpp,*.h,*.c
-        \ silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q --c++-kinds=+p)
+        \ silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q --c++-kinds=+p %)
 au! BufWritePost *.py
-        \ silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q)
-nnoremap <leader>ct silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q)
+        \ silent !(cd %:p:h;ctags --fields=+iaSl --extra=+q %)
+nnoremap <leader>ct :silent! :!(cd %:p:h;ctags --fields=+iaSl --extra=+q
+            \ *.cpp *.hpp *.c *.h *.py)<CR>
 
 " cscope
 "au BufWritePost *.cpp,*.h,*.c silent !cscope -bqk -i cscope.files
@@ -362,4 +370,5 @@ if !empty(dropboxPath)
                 \'template_path': dropboxPath . '/vimwiki_templates',
                 \'template_default': 'default',
                 \'template_ext': '.html'}]
+map <Leader><Space> <Plug>VimwikiToggleListItem
 endif
