@@ -59,6 +59,10 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'chrisbra/csv.vim'
 Plugin 'suan/vim-instant-markdown'
 Plugin 'jaxbot/browserlink.vim'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'Quramy/vim-js-pretty-template'
+Plugin 'jason0x43/vim-js-indent'
+Plugin 'Quramy/tsuquyomi'
 call vundle#end()
 filetype plugin indent on
 
