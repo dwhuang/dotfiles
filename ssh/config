@@ -1,5 +1,9 @@
 ServerAliveInterval 120
 
+Host *
+    IgnoreUnknown UseKeychain
+    UseKeychain yes
+    AddKeysToAgent yes
 Host bax
     Hostname 128.8.20.61
     User dwhuang
@@ -27,3 +31,6 @@ Host glue
 Host aries
     Hostname aries.student.umd.edu
     User dwhuang
+Host github.com
+    AddKeysToAgent yes
+    IdentityFile ~/.ssh/id_ed25519

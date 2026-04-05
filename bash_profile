@@ -1,10 +1,10 @@
 unalias -a
 
 # Check ls version
-if ls --color > /dev/null 2>&1; then 
+if ls --color > /dev/null 2>&1; then
     # GNU version
     lsColorFlag=--color
-else 
+else
     # OSX version
     lsColorFlag=-G
     export CLICOLOR=1
@@ -25,9 +25,7 @@ fi
 # Path
 pathCheckList=(
     ~/.bin
-    /opt/local/bin
-    /opt/local/sbin
-    /opt/local/lib/postgresql93/bin
+    ~/.local/bin
     ~/Library/Python/2.7/bin
 )
 # Add path if exists
@@ -55,19 +53,5 @@ if [ -z $LANG ]; then
 	export LANG=en_US.ISO8859-1
 fi
 
-# this is for leda, the library containing method to generate random planar 
-# graph; needed for generating cmsc420 project test cases
-#export LEDAROOT=/Users/dwhuang/Arsenal/420/leda
-#export PATH=$PATH:$LEDAROOT/Manual/cmd
-
 # command prompt
 export PS1="\[\033[37m\]\$(date +%H%M) \[\033[32m\]\u\[\033[31m\]@\h\[\033[32m\]:\w\[\033[m\]$ "
-
-# bash completion
-if [ -f /opt/local/etc/bash_completion ]; then
-    . /opt/local/etc/bash_completion
-fi
-
-if [ -d /Applications/MacPorts/MacVim.app ]; then
-    export VIM_APP_DIR=/Applications/MacPorts
-fi

@@ -63,6 +63,8 @@ Plugin 'leafgarland/typescript-vim'
 Plugin 'Quramy/vim-js-pretty-template'
 Plugin 'jason0x43/vim-js-indent'
 Plugin 'Quramy/tsuquyomi'
+Plugin 'tpope/vim-surround'
+Plugin 'heavenshell/vim-tslint'
 call vundle#end()
 filetype plugin indent on
 
@@ -309,6 +311,7 @@ nmap <leader>g :GitGutterToggle<CR>
 
 " for command-t
 let g:CommandTTraverseSCM = "pwd"
+set wildignore+=node_modules
 
 " search selected text
 vnoremap // y/<C-R>"<CR>
@@ -376,3 +379,27 @@ if !empty(dropboxPath)
                 \'template_ext': '.html'}]
 map <Leader><Space> <Plug>VimwikiToggleListItem
 endif
+" tslint for tsuquyomi
+augroup tslint
+  function! s:typescript_after(ch, msg)
+    let cnt = len(getqflist())
+    if cnt > 0
+      echomsg printf('[Tslint] %s errors', cnt)
+    endif
+  endfunction
+  let g:tslint_callbacks = {
+    \ 'after_run': function('s:typescript_after')
+    \ }
+
+  let g:tsuquyomi_disable_quickfix = 1
+
+  function! s:ts_quickfix()
+    let winid = win_getid()
+    call setqflist([], 'r')
+    execute ':TsuquyomiGeterr'
+    call tslint#run('a', winid)
+  endfunction
+
+  autocmd BufWritePost *.ts,*.tsx silent! call s:ts_quickfix()
+  autocmd InsertLeave *.ts,*.tsx silent! call s:ts_quickfix()
+augroup END
